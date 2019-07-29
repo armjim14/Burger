@@ -42,6 +42,10 @@
             width: 50%;
         }
     </style>
+    <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="cont">
@@ -54,6 +58,26 @@
         {{{body}}}
 
 <script>
+
+    $("#add").on("click", () => {
+
+        var info = {input: $("#text").val()};
+        console.log(info);
+        if (!info){
+            alert("please enter a item")
+        } else {
+            $.post("/api/food", info)
+            .then((info) => {
+                console.log(info);
+                restartSite();
+            })
+        }
+
+    })
+
+    function restartSite() {
+        window.location.href = "/"
+    }
 
 </script>
 </body>
