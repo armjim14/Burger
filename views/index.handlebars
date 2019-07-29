@@ -1,3 +1,23 @@
 {{#each send}}
-<h1>{{name}}</h1>
+
+    {{#if done}}
+
+        <div id="right-side">
+            <p><b>right Side</b></p>
+            <ul>
+                <li>{{name}}</li>
+            </ul>
+        </div>
+
+    {{else}}
+
+        <div id="left-side">
+            <p><b>Left Side</b></p>
+            <ul>
+                <li>{{name}}</li>
+            </ul>
+        </div>
+
+    {{/if}}
+
 {{/each}}
