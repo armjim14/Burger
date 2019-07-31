@@ -1,21 +1,22 @@
         <div id="left-side">
-            <p><b>left Side</b></p>
+            <p><b>Not Done</b></p>
             <ul>
 {{#each send}}
     {{#unless done}}
-                <li>{{namex}} <button class="a">X</button></li>
+                <li>{{id}} {{namex}} <span> </span> <button class="a">x</button></li>
     {{/unless}}
 {{/each}}
             </ul>
         </div>
 
         <div id="right-side">
-            <p><b>right Side</b></p>
+            <p><b>Done</b></p>
             <ul>
 {{#each send}}
     {{#if done}}
-                <li>{{namex}}</li>
+                <li>{{id}} {{namex}}</li>
     {{/if}}
 {{/each}}
             </ul>
         </div>
+

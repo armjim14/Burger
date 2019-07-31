@@ -28,8 +28,13 @@ app.get("/", (req, res) => {
 
 app.post("/api/food", (req, res) => {
     var item = req.body.input;
-    console.log(item);
     conn.query(`INSERT INTO food (namex, done) values ('${item}', false)`, (err, data) => {
+        if (err) throw err;
+    })
+})
+
+app.put("/move/:id", (req, res) => {
+    conn.query(`UPDATE food SET done = true WHERE id = ${req.params.id}`, (err, data) => {
         if (err) throw err;
     })
 })
