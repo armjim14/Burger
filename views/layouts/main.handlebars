@@ -66,7 +66,7 @@
 
         var info = {input: $("#text").val()};
         console.log(info);
-        if (!info){
+        if (!info.input){
             alert("please enter a item")
         } else {
             $.post("/api/food", info)
@@ -82,18 +82,19 @@
 
     for ( let i = 0; i < shift.length; i++ ){
         shift[i].addEventListener("click", () => {
-            var j = i + 1;
+            var j = shift[i].id;
             $.ajax({
                 url: "/move/" + j,
                 method: "PUT",
             }).then(() => {
                 console.log("info updated");
+                restartSite();
             })
         })
     }
 
     function restartSite() {
-        window.location.href = "/";
+        location.reload();
     }
 
 </script>
