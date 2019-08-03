@@ -1,29 +1,18 @@
 var express = require("express");
 var exh = require("express-handlebars");
-var mysql = require("mysql");
+var dataB = require("./controllers/burger-control.js")
 
 var app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-var conn = mysql.createConnection({
-    host: "localhost",
-    port: 0000,
-    user: "root",
-    database: "restaurants",
-    password: ""
-})
-
-conn.connect();
-
 app.engine("handlebars", exh({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
-    conn.query(`SELECT * FROM food`, (err, data) => {
-        res.render("index", {send: data});
-    })
+    var allx = dataB.all();
+    res.render("index", {send: allx});
 })
 
 app.post("/api/food", (req, res) => {
