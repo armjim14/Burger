@@ -1,6 +1,6 @@
 var express = require("express");
 var exh = require("express-handlebars");
-var dataB = require("./controllers/burger-control.js")
+var orm = require("./config/orm.js");
 
 var app = express();
 
@@ -11,23 +11,21 @@ app.engine("handlebars", exh({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.get("/", (req, res) => {
-    var allx = dataB.all();
-    res.render("index", {send: allx});
+    orm.selectAll((data) => {
+        res.render("index", {send: data});
+    });
 })
 
 app.post("/api/food", (req, res) => {
     var item = req.body.input;
-    conn.query(`INSERT INTO food (namex, done) values ('${item}', false)`, (err, data) => {
-        if (err) throw err;
-        res.redirect("/");
-    })
+    orm.insertOne(item);
+    res.redirect("/");
 })
 
 app.put("/move/:id", (req, res) => {
-    conn.query(`UPDATE food SET done = true WHERE id = ${req.params.id}`, (err, data) => {
-        if (err) throw err;
-        res.redirect("/");
-    })
+    var item = req.params.id
+    orm.updateOne(item);
+    res.redirect("/");
 })
 
 app.listen(3000, () => {

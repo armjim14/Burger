@@ -1,19 +1,23 @@
-var conn = require(".connection.js")
+var conn = require("./connection.js")
 
 var layout = {
 
-    selectAll = () => {
+    selectAll: (fun) => {
         conn.query("SELECT * FROM food", (err, data) => {
-            return data;
+            fun(data)
         })
     },
 
-    insertOne = () => {
-
+    insertOne: (item) => {
+        conn.query("INSERT INTO food (namex, done) values (?, false)",[item] , (err, data) => {
+            console.log(data);
+        })
     },
 
-    updateOne = () => {
-
+    updateOne: (item) => {
+        conn.query("UPDATE food SET done = true WHERE id = ?",[item] , (err, data) => {
+            console.log(data);
+        })
     }
 
 };
