@@ -84,7 +84,7 @@
         shift[i].addEventListener("click", () => {
             var j = shift[i].id;
             $.ajax({
-                URL: `/move/${j}`,
+                url: `/move/${j}`,
                 method: "PUT"
             }).done(() => {
                 console.log("info updated");
