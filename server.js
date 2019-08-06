@@ -27,7 +27,7 @@ app.post("/api/food", (req, res) => {
 app.put("/move/:id", (req, res) => {
     var item = req.params.id
     orm.updateOne(item);
-    res.redirect("/");
+    res.status(200).json({msg: "No error"});
 })
 
 app.listen(PORT, () => {
