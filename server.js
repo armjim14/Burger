@@ -4,6 +4,8 @@ var orm = require("./config/orm.js");
 
 var app = express();
 
+var PORT = process.env.PORT || 3000;
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -25,9 +27,9 @@ app.post("/api/food", (req, res) => {
 app.put("/move/:id", (req, res) => {
     var item = req.params.id
     orm.updateOne(item);
-    res.redirect("/");
+    res.status(200).json({msg: "it works"});
 })
 
-app.listen(3000, () => {
-    console.log("localhost:3000");
+app.listen(PORT, () => {
+    console.log("localhost:" + PORT);
 })

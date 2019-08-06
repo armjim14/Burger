@@ -72,7 +72,7 @@
             $.post("/api/food", info)
             .then((info) => {
                 console.log(info);
-                restartSite();
+                location.reload();
             })
         }
 
@@ -84,17 +84,13 @@
         shift[i].addEventListener("click", () => {
             var j = shift[i].id;
             $.ajax({
-                url: "/move/" + j,
-                method: "PUT",
-            }).then(() => {
+                url: `/move/${j}`,
+                method: "PUT"
+            }).done(() => {
                 console.log("info updated");
-                restartSite();
+                location.reload();
             })
         })
-    }
-
-    function restartSite() {
-        location.reload();
     }
 
 </script>
